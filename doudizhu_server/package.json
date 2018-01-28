@@ -1,0 +1,15 @@
+{
+  "name": "doudizhu_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "start server"
+  },
+  "author": "wangzhen",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.15.0",
+    "socket.io": "^2.0.4"
+  }
+}
