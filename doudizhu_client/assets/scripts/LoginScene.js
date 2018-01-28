@@ -21,17 +21,20 @@ cc.Class({
 
     onClick(event,data){
         if(data=="login"){
+            cc.director.loadScene('MainScene');
+
             let uniqueid=10000;
             uniqueid+=Math.floor(Math.random()*8);
             global.socket.login(uniqueid+"","大黄","http://www.baidu.com",function (err,data) {
                console.log(" login data = " +data);
+               cc.director.loadScene('MainScene');
            })
         }
     },
 
     start () {
-        global.socket.init();
-    },
+        // global.socket.init();
+    }
 
     // update (dt) {},
 });
