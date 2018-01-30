@@ -21,19 +21,22 @@ cc.Class({
 
     onClick(event,data){
         if(data=="login"){
+
+            let unidqueID=global.playerManger.playerData.uniqueID;
+            let nickName=global.playerManger.playerData.nickName;
+            let avatarUrl=global.playerManger.playerData.avatarUrl;
+           //  global.socket.login(unidqueID,nickName,avatarUrl,function (err,data) {
+           //     console.log(" login data = " +data);
+           //     cc.director.loadScene('MainScene');
+           // });
+            console.log(unidqueID);
             cc.director.loadScene('MainScene');
 
-            let uniqueid=10000;
-            uniqueid+=Math.floor(Math.random()*8);
-            global.socket.login(uniqueid+"","大黄","http://www.baidu.com",function (err,data) {
-               console.log(" login data = " +data);
-               cc.director.loadScene('MainScene');
-           })
         }
     },
 
     start () {
-        // global.socket.init();
+        // global.Socket.init();
     }
 
     // update (dt) {},

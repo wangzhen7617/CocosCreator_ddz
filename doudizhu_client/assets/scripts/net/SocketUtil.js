@@ -1,7 +1,7 @@
 
-import Content from "./../entity/content"
+import Content from "../entity/Content"
 
-const socket=function () {
+const Socket=function () {
     let that={};
     let _socket=undefined;
     let _callBackIndex=1;
@@ -38,4 +38,4 @@ const socket=function () {
     };
     return that;
 };
-export default socket;
+export default Socket;
