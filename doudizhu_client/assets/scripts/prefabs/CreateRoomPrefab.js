@@ -8,6 +8,7 @@
 //  - [Chinese] http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
 
+import global from "../global"
 cc.Class({
     extends: cc.Component,
 
@@ -37,8 +38,23 @@ cc.Class({
             case "back":
                 this.node.destroy();
                 break;
-            case '15':
-                event.target;
+            case 'create':
+                global.socket.createRoom({
+                    rule:1
+                },function (err,data) {
+                    if(err){
+                        console.log('create room err: '+err);
+                    }else{
+                        global.socket.joinRoom(data.roomID,function (err, resp) {
+                            if(err){
+                                console.log('join room err: '+err);
+                            }else{
+                                cc.director.loadScene('gameScene');
+                            }
+                        })
+                    }
+                });
+                this.node.destroy();
                 break;
             default:
                 console.log('click data:'+clickData);

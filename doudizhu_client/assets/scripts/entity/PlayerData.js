@@ -7,12 +7,17 @@ let PlayerData=function () {
     that.houseCardCount=0;
 
 
-    that.loginCallBack=function (data) {
+    that.loginSuccess=function (data) {
         that.uid=data.uid;
         that.nickName=data.nickName;
         that.uniqueID=data.uniqueID;
         that.avatarUrl=data.avatarUrl;
         that.houseCardCount=data.houseCardCount;
+    };
+    that.setWeiChatData=function (data) {
+        that.nickName=data.nickName;
+        that.uniqueID=data.uniqueID;
+        that.avatarUrl=data.avatarUrl;
     };
     return that;
 };

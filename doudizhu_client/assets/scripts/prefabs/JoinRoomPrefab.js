@@ -8,6 +8,8 @@
 //  - [Chinese] http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/editors_and_tools/creator-chapters/scripting/life-cycle-callbacks/index.html
 
+
+import global from "../global"
 cc.Class({
     extends: cc.Component,
 
@@ -50,6 +52,13 @@ cc.Class({
             this.numString=string;
             if(this.numString.length===6){
                 console.log("do join room");
+                global.socket.joinRoom(this.numString,function (err,data) {
+                    if(err){
+                        console.log('join room err: '+err);
+                    }else{
+                        cc.director.loadScene('gameScene');
+                    }
+                })
             }
         }
     },

@@ -16,19 +16,22 @@ const Socket=function () {
             let cb=_callBackMap[callBackIndex];
             if(cb){
                 console.log("receive callback ");
-                cb(null,data.data);
+                if(data.data.err){
+                    cb(data.data.err);
+                }else{
+                    cb(null,data.data);
+                }
             }
         });
 
 
     };
     const request=function (msg ,data,cb) {
-        console.log(" callback index = "+_callBackIndex);
+        console.log(" request msg = "+msg+"  data"+JSON.stringify(data));
         _callBackMap[_callBackIndex]=cb;
         notify(msg,data);
     };
     const notify=function (msg,data) {
-        console.log("callback index ="+_callBackIndex);
         _socket.emit("notify",{msg:msg,callBackIndex:_callBackIndex,data:data});
         _callBackIndex++;
 
@@ -36,6 +39,13 @@ const Socket=function () {
     that.login=function (uniqueID,nickName,avatar,cb) {
         request("login",{uniqueID:uniqueID,nickName:nickName,avatar:avatar},cb);
     };
+    that.createRoom=function (data,cb) {
+        request("create_room",data,cb);
+    };
+    that.joinRoom=function (roomId, cb) {
+        request("join_room",{roomId:roomId},cb)
+    };
     return that;
+
 };
 export default Socket;

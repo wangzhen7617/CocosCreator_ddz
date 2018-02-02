@@ -21,16 +21,19 @@ cc.Class({
 
     onClick(event,data){
         if(data=="login"){
-
             let unidqueID=global.playerManger.playerData.uniqueID;
             let nickName=global.playerManger.playerData.nickName;
             let avatarUrl=global.playerManger.playerData.avatarUrl;
-           //  global.socket.login(unidqueID,nickName,avatarUrl,function (err,data) {
-           //     console.log(" login data = " +data);
-           //     cc.director.loadScene('MainScene');
-           // });
-            console.log(unidqueID);
-            cc.director.loadScene('MainScene');
+
+            global.socket.login(unidqueID,nickName,avatarUrl,function (err,data) {
+                if(err){
+                    console.log('login err: '+err);
+                }else{
+                    console.log(" login data = " +data);
+                    global.playerManger.playerData.loginSuccess(data);
+                    cc.director.loadScene('mainScene');
+                }
+           });
 
         }
     },
